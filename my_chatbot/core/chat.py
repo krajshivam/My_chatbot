@@ -6,7 +6,17 @@ client = Groq(api_key=GROQ_API_KEY)
 
 def start_chat():
     """Returns a fresh empty conversation history."""
-    return []
+    return [
+        {
+            "role": "system",
+            "content": """You are a helpful assistant. 
+    Format all your responses as follows:
+- Leave space before u start writing your answer.
+- Number your points as 1> 2> and so on.
+- Leave a blank line before every new point
+- Keep answers concise and clear""",
+        }
+    ]
 
 
 def send_message(messages: list, user_input: str) -> str:
